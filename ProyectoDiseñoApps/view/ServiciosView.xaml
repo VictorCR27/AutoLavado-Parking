@@ -7,7 +7,50 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Servicios" HorizontalAlignment="Left" Margin="317,179,0,0" VerticalAlignment="Top" Height="95" Width="203" Background="White" FontSize="48"/>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label  VerticalAlignment="Top" Content="Modelo del vehículo:" Foreground="White" Background="{x:Null}" Height="34" FontSize="20" Margin="50,8,552,0" />
+        <TextBox Name="VehicleModelTextBox" Margin="50,41,570,393" RenderTransformOrigin="0.485,0.662" TextChanged="VehicleModelTextBox_TextChanged" />
+
+        <Label FontSize="20" Content="Placa del vehículo:" Foreground="White" Margin="46,103,581,305"/>
+        <TextBox Name="VehiclePlateTextBox" Margin="51,142,573,288" TextChanged="VehiclePlateTextBox_TextChanged" />
+
+        <Label FontSize="20" Content="Servicios:" Foreground="White" Margin="369,11,343,402"/>
+        <StackPanel Name="ServicesPanel" Margin="374,51,137,297">
+            <RadioButton FontSize="15" Foreground="White" Name="BronceService" Content="Servicio de lavado bronce" />
+            <RadioButton FontSize="15" Foreground="White" Name="BasicService" Content="Servicio de lavado básico" />
+            <RadioButton FontSize="15" Foreground="White" Name="PremiumService" Content="Servicio de lavado premium" />
+            <RadioButton FontSize="15" Foreground="White" Name="WashAndParkingService" Content="Servicio de lavado con estacionamiento" />
+            <RadioButton FontSize="15" Foreground="White" Name="ParkingService" Content="Servicio de estacionamiento" Checked="ParkingService_Checked" Unchecked="ParkingService_Unchecked" Height="36" Width="298" />
+        </StackPanel>
+
+        <Label FontSize="15" Foreground="White" Content="Placa del vehículo (estacionamiento):" Margin="376,167,151,254" />
+        <TextBox  Name="ParkingPlateTextBox" IsEnabled="False" Margin="386,207,249,217" />
+
+        <Label  FontSize="15" Foreground="White" Content="Hora de ingreso (estacionamiento):" Margin="375,252,173,162" />
+        <TextBox Name="ParkingHourTextBox" IsEnabled="False" Margin="389,292,247,131" />
+
+        <Label Name="TotalLabel" Foreground="White" Content="Total a cobrar: $0.00" Margin="489,405,190,17" />
+
+        <Button Foreground="White" Name="SubmitButton" Content="Enviar" Click="SubmitButton_Click" Background="#FFB83030" Margin="632,403,100,17" />
     </Grid>
 </UserControl>
