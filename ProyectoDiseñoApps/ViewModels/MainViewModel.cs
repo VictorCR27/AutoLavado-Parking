@@ -67,6 +67,8 @@ namespace ProyectoDiseñoApps.ViewModels
         public ICommand ShowServiciosViewCommand { get; }
 
         public ICommand ShowEstadoViewCommand { get; }
+
+        public ICommand ShowAdministradorViewCommand { get; }
         #endregion
 
         public MainViewModel()
@@ -77,6 +79,8 @@ namespace ProyectoDiseñoApps.ViewModels
             ShowInicioViewCommand = new ViewModelCommand(ExecuteShowInicioViewCommand);
 
             ShowEstadoViewCommand = new ViewModelCommand(ExecuteShowEstadoViewCommand);
+
+            ShowAdministradorViewCommand = new ViewModelCommand(ExecuteShowAdministradorViewCommand);
 
 
             // Vista predeterminada
@@ -102,7 +106,14 @@ namespace ProyectoDiseñoApps.ViewModels
         {
             CurrentChildView = new EstadoViewModel();
             Caption = "Estado de Servicios";
-            Icon = IconChar.Parking;
+            Icon = IconChar.Servicestack;
+        }
+
+        private void ExecuteShowAdministradorViewCommand(object obj)
+        {
+            CurrentChildView = new AdministradorViewModel();
+            Caption = "Administrador";
+            Icon = IconChar.Readme;
         }
 
 

@@ -59,12 +59,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\AdministradorViewModel.cs" />
     <Compile Include="ViewModels\EstadoViewModel.cs" />
     <Compile Include="ViewModels\InicioViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ServiciosViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelCommand.cs" />
+    <Compile Include="view\AdministradorView.xaml.cs">
+      <DependentUpon>AdministradorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\EstadoView.xaml.cs">
       <DependentUpon>EstadoView.xaml</DependentUpon>
     </Compile>
@@ -92,6 +96,10 @@
     <Compile Include="Database\buisnessLogic.cs" />
     <Compile Include="Database\connectionDB.cs" />
     <Compile Include="Database\dataAccess.cs" />
+    <Page Include="view\AdministradorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\EstadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -52,6 +52,9 @@ namespace ProyectoDiseñoApps.view
             else this.WindowState = WindowState.Normal;
         }
 
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

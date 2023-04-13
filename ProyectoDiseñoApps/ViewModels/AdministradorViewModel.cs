@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoDiseñoApps.ViewModels
 {
-    public class EstadoViewModel:ViewModelBase
+    public class AdministradorViewModel : ViewModelBase
     {
     }
 }

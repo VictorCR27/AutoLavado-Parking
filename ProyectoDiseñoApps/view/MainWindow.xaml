@@ -26,9 +26,13 @@
             <local:ServiciosView/>
         </DataTemplate>
 
-        <!--<DataTemplate DataType="{x:Type viewModel:EstadoViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:EstadoViewModel}">
             <local:EstadoView/>
-        </DataTemplate>-->
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AdministradorViewModel}">
+            <local:AdministradorView/>
+        </DataTemplate>
     </Window.Resources>
 
 
@@ -103,16 +107,17 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
-                                 Command="{Binding ShowParqueoViewCommand}">
+                                 Command="{Binding ShowEstadoViewCommand}">
 
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Parking" Style="{StaticResource menuButtonIcon}"/>
+                            <fa:IconImage Icon="Servicestack" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Estado de servicios" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}">
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowAdministradorViewCommand}">
 
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Tools" Style="{StaticResource menuButtonIcon}"/>
