@@ -93,9 +93,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Database\buisnessLogic.cs" />
     <Compile Include="Database\connectionDB.cs" />
-    <Compile Include="Database\dataAccess.cs" />
     <Page Include="view\AdministradorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

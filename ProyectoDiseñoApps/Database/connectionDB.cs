@@ -7,9 +7,20 @@ using System.Threading.Tasks;
 
 namespace ProyectoDiseñoApps
 {
-    class connectionDB
+    class ConnectionDB
     {
-        //Establishes connection to AUTOLAVADOCR database.
-        public SqlConnection connect = new SqlConnection("Data Source=.; Initial Catalog= AUTOLAVADOCR; Integrated Security= True");
+        private string connectionString;
+        private SqlConnection connection;
+
+        public ConnectionDB()
+        {
+            connectionString = "Data Source=PC\\SQLEXPRESS;Initial Catalog=Autolavado;User ID=UsuarioAutoLavado;Password=1234;";
+            connection = new SqlConnection(connectionString);
+        }
+
+        public SqlConnection GetConnection()
+        {
+            return connection;
+        }
     }
 }

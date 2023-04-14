@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProyectoDiseñoApps.view"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             Margin="25,25,0,25">
+    <Grid Margin="17,-20,0,25">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -24,33 +25,31 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
 
-        <Label  VerticalAlignment="Top" Content="Modelo del vehículo:" Foreground="White" Background="{x:Null}" Height="34" FontSize="20" Margin="50,8,552,0" />
-        <TextBox Name="VehicleModelTextBox" Margin="50,41,570,393" RenderTransformOrigin="0.485,0.662" TextChanged="VehicleModelTextBox_TextChanged" />
 
-        <Label FontSize="20" Content="Placa del vehículo:" Foreground="White" Margin="46,103,581,305"/>
-        <TextBox Name="VehiclePlateTextBox" Margin="51,142,573,288" TextChanged="VehiclePlateTextBox_TextChanged" />
+        <Label  VerticalAlignment="Top" Content="Modelo del vehículo:" Foreground="White" Background="{x:Null}" Height="34" FontSize="20" Margin="44,12,532,0" />
+        <TextBox x:Name="Modelotxt" Margin="50,48,567,465" RenderTransformOrigin="0.485,0.662" TextChanged="Modelotxt_TextChanged" />
 
-        <Label FontSize="20" Content="Servicios:" Foreground="White" Margin="369,11,343,402"/>
-        <StackPanel Name="ServicesPanel" Margin="374,51,137,297">
+        <Label FontSize="20" Content="Placa del vehículo:" Foreground="White" Margin="44,70,552,417"/>
+        <TextBox Name="Placatxt" Margin="50,108,567,405" TextChanged="Placatxt_TextChanged" />
+
+        <Label FontSize="20" Content="Servicios:" Foreground="White" Margin="50,138,628,275"/>
+        <StackPanel Name="TipoServiciosBtn" Margin="50,169,353,201">
             <RadioButton FontSize="15" Foreground="White" Name="BronceService" Content="Servicio de lavado bronce" />
             <RadioButton FontSize="15" Foreground="White" Name="BasicService" Content="Servicio de lavado básico" />
             <RadioButton FontSize="15" Foreground="White" Name="PremiumService" Content="Servicio de lavado premium" />
-            <RadioButton FontSize="15" Foreground="White" Name="WashAndParkingService" Content="Servicio de lavado con estacionamiento" />
-            <RadioButton FontSize="15" Foreground="White" Name="ParkingService" Content="Servicio de estacionamiento" Checked="ParkingService_Checked" Unchecked="ParkingService_Unchecked" Height="36" Width="298" />
+            <RadioButton FontSize="15" Foreground="White" Name="WashAndParkingService" Content="Servicio de lavado con estacionamiento" Checked="WashAndParkingService_Checked" Unchecked="WashAndParkingService_Unchecked"/>
+            <RadioButton FontSize="15" Foreground="White" Name="ParkingService" Content="Servicio de estacionamiento" Checked="ParkingService_Checked" Unchecked="ParkingService_Unchecked" Height="36" Width="475" />
         </StackPanel>
 
-        <Label FontSize="15" Foreground="White" Content="Placa del vehículo (estacionamiento):" Margin="376,167,151,254" />
-        <TextBox  Name="ParkingPlateTextBox" IsEnabled="False" Margin="386,207,249,217" />
+        <Label FontSize="15" Foreground="White" Content="Espacio de estacionamento (estacionamiento):" Margin="50,283,419,177" />
+        <TextBox  Name="ParqueoEspaciotxt" IsEnabled="False" Margin="57,315,569,197" />
 
-        <Label  FontSize="15" Foreground="White" Content="Hora de ingreso (estacionamiento):" Margin="375,252,173,162" />
-        <TextBox Name="ParkingHourTextBox" IsEnabled="False" Margin="389,292,247,131" />
+        <Label  FontSize="15" Foreground="White" Content="Hora de ingreso (estacionamiento):" Margin="50,346,490,106" />
+        <TextBox Name="ParqueoHoratxt" IsEnabled="False" Margin="57,377,569,135" />
 
-        <Label Name="TotalLabel" Foreground="White" Content="Total a cobrar: $0.00" Margin="489,405,190,17" />
+        <Label Name="TotalLabel" Foreground="White" Content="Total a cobrar: $0.00" Margin="445,402,210,80" />
 
-        <Button Foreground="White" Name="SubmitButton" Content="Enviar" Click="SubmitButton_Click" Background="#FFB83030" Margin="632,403,100,17" />
+        <Button Foreground="White" Name="SubmitButton" Content="Enviar" Click="SubmitButton_Click" Background="#FFB83030" Margin="581,386,118,84" />
     </Grid>
 </UserControl>
