@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace ProyectoDiseñoApps
 {
-    class ConnectionDB
+    public class ConnectionDB 
     {
-        private string connectionString;
         private SqlConnection connection;
+        private string connectionString = "data source=PC\\SQLEXPRESS;initial catalog=Autolavado; user id=UserAutoLavado;password=1234;";
 
         public ConnectionDB()
         {
-            connectionString = "Data Source=PC\\SQLEXPRESS;Initial Catalog=Autolavado;User ID=UsuarioAutoLavado;Password=1234;";
             connection = new SqlConnection(connectionString);
         }
 
@@ -22,5 +21,7 @@ namespace ProyectoDiseñoApps
         {
             return connection;
         }
+
     }
+
 }

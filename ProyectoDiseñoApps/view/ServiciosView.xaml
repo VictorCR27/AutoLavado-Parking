@@ -28,7 +28,7 @@
 
 
         <Label  VerticalAlignment="Top" Content="Modelo del vehículo:" Foreground="White" Background="{x:Null}" Height="34" FontSize="20" Margin="44,12,532,0" />
-        <TextBox x:Name="Modelotxt" Margin="50,48,567,465" RenderTransformOrigin="0.485,0.662" TextChanged="Modelotxt_TextChanged" />
+        <TextBox x:Name="Modelotxt" Margin="50,48,567,465" TextChanged="Modelotxt_TextChanged" />
 
         <Label FontSize="20" Content="Placa del vehículo:" Foreground="White" Margin="44,70,552,417"/>
         <TextBox Name="Placatxt" Margin="50,108,567,405" TextChanged="Placatxt_TextChanged" />
@@ -50,6 +50,6 @@
 
         <Label Name="TotalLabel" Foreground="White" Content="Total a cobrar: $0.00" Margin="445,402,210,80" />
 
-        <Button Foreground="White" Name="SubmitButton" Content="Enviar" Click="SubmitButton_Click" Background="#FFB83030" Margin="581,386,118,84" />
+        <Button Foreground="White" Name="InsertarDatos" Content="Agregar Servicio" Click="InsertarDatos_Click"  Background="#FFB83030" Margin="581,386,118,84" />
     </Grid>
 </UserControl>

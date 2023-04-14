@@ -1,36 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace ProyectoDiseñoApps.view
 {
     public partial class ServiciosView : UserControl
     {
-        ConnectionDB DB;
-
         public ServiciosView()
         {
             InitializeComponent();
 
-            DB = new ConnectionDB();
-
-            SubmitButton.Click += SubmitButton_Click; // Agregar esta línea para manejar el evento Click del botón de envío
             BronceService.Click += BronceService_Click;
             BasicService.Click += BasicService_Click;
             PremiumService.Click += PremiumService_Click;
@@ -38,64 +21,67 @@ namespace ProyectoDiseñoApps.view
             WashAndParkingService.Unchecked += WashAndParkingService_Checked;
             ParkingService.Checked += ParkingService_Checked;
             ParkingService.Unchecked += ParkingService_Unchecked;
+            InsertarDatos.Click += InsertarDatos_Click;
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        
+        private void InsertarDatos_Click(object sender, RoutedEventArgs e)
         {
             string modelo = Modelotxt.Text;
             string placa = Placatxt.Text;
-            string TipoServicio;
+            string tipoServicio;
 
             if (BronceService.IsChecked == true)
             {
-                TipoServicio = "Bronce";
+                tipoServicio = "Bronce";
             }
             else if (BasicService.IsChecked == true)
             {
-                TipoServicio = "Básico";
+                tipoServicio = "Básico";
             }
             else if (PremiumService.IsChecked == true)
             {
-                TipoServicio = "Premium";
+                tipoServicio = "Premium";
             }
             else if (WashAndParkingService.IsChecked == true)
             {
-                TipoServicio = "Servicio de lavado y parqueo";
+                tipoServicio = "Servicio de lavado y parqueo";
             }
             else if (ParkingService.IsChecked == true)
             {
-                TipoServicio = "Servicio de parqueo";
+                tipoServicio = "Servicio de parqueo";
             }
             else
             {
-                TipoServicio = "No seleccionado";
+                tipoServicio = "No seleccionado";
             }
 
-            string EspacioParqueo = ParqueoEspaciotxt.Text;
-            string HoraParqueo = ParqueoHoratxt.Text;
+            string espacioParqueo = ParqueoEspaciotxt.Text;
+            string horaParqueo = ParqueoHoratxt.Text;
 
-            ConnectionDB con = new ConnectionDB();
-            SqlConnection connection = con.GetConnection();
+            ConnectionDB dbConnection = new ConnectionDB();
+            SqlConnection connection = dbConnection.GetConnection();
 
             try
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("INSERT INTO Servicios (CarroModelo, CarroPlaca, TipoServicio, ParqueoEspacio, ParqueoHora) VALUES (@CarroModelo, @CarroPlaca, @TipoServicio,@ParqueoEspacio,@ParqueoHora)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Servicios (CarroModelo, CarroPlaca, TipoServicio,ParqueoEspacio,ParqueoHora) VALUES (@CarroModelo, @CarroPlaca, @TipoServicio,@ParqueoEspacio,@ParqueoHora)", connection))
                 {
-                    command.Parameters.AddWithValue("@CarroModelo", modelo);
-                    command.Parameters.AddWithValue("@CarroPlaca", placa);
-                    command.Parameters.AddWithValue("@TipoServicio", TipoServicio);
-                    command.Parameters.AddWithValue("@ParqueoEspacio", EspacioParqueo);
-                    command.Parameters.AddWithValue("@ParqueoHora", HoraParqueo);
+                    command.Parameters.AddWithValue("@CarroModelo", Modelotxt.Text);
+                    command.Parameters.AddWithValue("@CarroPlaca", Placatxt.Text);
+                    command.Parameters.AddWithValue("@TipoServicio", tipoServicio);
+                    command.Parameters.AddWithValue("@ParqueoEspacio", ParqueoEspaciotxt.Text);
+                    command.Parameters.AddWithValue("@ParqueoHora", ParqueoHoratxt.Text);
+
 
                     int rowsAffected = command.ExecuteNonQuery();
-                    System.Windows.MessageBox.Show($"{rowsAffected} filas insertadas.");
+                    MessageBox.Show($"{rowsAffected} filas insertadas.");
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
             }
             finally
             {
@@ -104,6 +90,8 @@ namespace ProyectoDiseñoApps.view
                     connection.Close();
                 }
             }
+
+
         }
 
         #region----------------------------------------------------------------Componentes
@@ -158,5 +146,7 @@ namespace ProyectoDiseñoApps.view
         {
 
         }
+
+      
     }
 }
