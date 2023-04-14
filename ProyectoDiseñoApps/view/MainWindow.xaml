@@ -107,7 +107,7 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
-                                 Command="{Binding ShowEstadoViewCommand}">
+                                 Command="{Binding ShowEstadoViewCommand}" Checked="RadioButton_Checked_1">
 
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Servicestack" Style="{StaticResource menuButtonIcon}"/>

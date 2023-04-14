@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Database\dataAccess.cs" />
     <Compile Include="ViewModels\AdministradorViewModel.cs" />
     <Compile Include="ViewModels\EstadoViewModel.cs" />
     <Compile Include="ViewModels\InicioViewModel.cs" />

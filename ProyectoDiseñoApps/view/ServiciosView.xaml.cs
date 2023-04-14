@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDiseñoApps.Database;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -14,40 +15,68 @@ namespace ProyectoDiseñoApps.view
         {
             InitializeComponent();
 
-            BronceService.Click += BronceService_Click;
-            BasicService.Click += BasicService_Click;
-            PremiumService.Click += PremiumService_Click;
-            WashAndParkingService.Checked += WashAndParkingService_Checked;
-            WashAndParkingService.Unchecked += WashAndParkingService_Checked;
-            ParkingService.Checked += ParkingService_Checked;
-            ParkingService.Unchecked += ParkingService_Unchecked;
-            InsertarDatos.Click += InsertarDatos_Click;
+    
+            servicio_estacionamientoPremium.Checked += estacionamientoPremium_Checked;
+            servicio_estacionamientoPremium.Unchecked += estacionamientoPremium_Unchecked;
+            servicioEstacionamiento.Checked += estacionamientoBasico_Checked;
+            servicioEstacionamiento.Unchecked += estacionamientoBasico_Unchecked;
         }
 
         
-        private void InsertarDatos_Click(object sender, RoutedEventArgs e)
+      
+        #region----------------------------------------------------------------Componentes
+
+   
+        private void estacionamientoPremium_Checked(object sender, RoutedEventArgs e)
         {
-            string modelo = Modelotxt.Text;
-            string placa = Placatxt.Text;
+            espacioBox.IsEnabled = servicio_estacionamientoPremium.IsChecked == true;
+            horaBox.IsEnabled = servicio_estacionamientoPremium.IsChecked == true;
+        }
+
+        private void estacionamientoPremium_Unchecked(object sender, RoutedEventArgs e)
+        {
+            espacioBox.IsEnabled = false;
+            horaBox.IsEnabled = false;
+        }
+
+        private void estacionamientoBasico_Checked(object sender, RoutedEventArgs e)
+        {
+            espacioBox.IsEnabled = servicioEstacionamiento.IsChecked == true;
+            horaBox.IsEnabled = servicioEstacionamiento.IsChecked == true;
+
+        }
+
+        private void estacionamientoBasico_Unchecked(object sender, RoutedEventArgs e)
+        {
+            espacioBox.IsEnabled = false;
+            horaBox.IsEnabled = false;
+        }
+
+        #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+       
             string tipoServicio;
 
-            if (BronceService.IsChecked == true)
+            //TO DO: reemplazar esto por un switch o algo mas simple
+            if (servicioBronce.IsChecked == true)
             {
                 tipoServicio = "Bronce";
             }
-            else if (BasicService.IsChecked == true)
+            else if (servicioBasico.IsChecked == true)
             {
                 tipoServicio = "Básico";
             }
-            else if (PremiumService.IsChecked == true)
+            else if (servicioPremium.IsChecked == true)
             {
                 tipoServicio = "Premium";
             }
-            else if (WashAndParkingService.IsChecked == true)
+            else if (servicio_estacionamientoPremium.IsChecked == true)
             {
                 tipoServicio = "Servicio de lavado y parqueo";
             }
-            else if (ParkingService.IsChecked == true)
+            else if (servicioEstacionamiento.IsChecked == true)
             {
                 tipoServicio = "Servicio de parqueo";
             }
@@ -56,97 +85,10 @@ namespace ProyectoDiseñoApps.view
                 tipoServicio = "No seleccionado";
             }
 
-            string espacioParqueo = ParqueoEspaciotxt.Text;
-            string horaParqueo = ParqueoHoratxt.Text;
-
-            ConnectionDB dbConnection = new ConnectionDB();
-            SqlConnection connection = dbConnection.GetConnection();
-
-            try
-            {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("INSERT INTO Servicios (CarroModelo, CarroPlaca, TipoServicio,ParqueoEspacio,ParqueoHora) VALUES (@CarroModelo, @CarroPlaca, @TipoServicio,@ParqueoEspacio,@ParqueoHora)", connection))
-                {
-                    command.Parameters.AddWithValue("@CarroModelo", Modelotxt.Text);
-                    command.Parameters.AddWithValue("@CarroPlaca", Placatxt.Text);
-                    command.Parameters.AddWithValue("@TipoServicio", tipoServicio);
-                    command.Parameters.AddWithValue("@ParqueoEspacio", ParqueoEspaciotxt.Text);
-                    command.Parameters.AddWithValue("@ParqueoHora", ParqueoHoratxt.Text);
-
-
-                    int rowsAffected = command.ExecuteNonQuery();
-                    MessageBox.Show($"{rowsAffected} filas insertadas.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-            finally
-            {
-                if (connection != null && connection.State == ConnectionState.Open)
-                {
-                    connection.Close();
-                }
-            }
-
-
+           
+            //añade la informacion a la base de datos
+            dataAccess datos = new dataAccess();
+            datos.addServicio(modeloBox.Text, placaBox.Text, tipoServicio, espacioBox.Text, horaBox.Text);
         }
-
-        #region----------------------------------------------------------------Componentes
-
-        private void BronceService_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BasicService_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PremiumService_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void WashAndParkingService_Checked(object sender, RoutedEventArgs e)
-        {
-            ParqueoEspaciotxt.IsEnabled = WashAndParkingService.IsChecked == true;
-            ParqueoHoratxt.IsEnabled = WashAndParkingService.IsChecked == true;
-        }
-
-        private void WashAndParkingService_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ParqueoEspaciotxt.IsEnabled = false;
-            ParqueoHoratxt.IsEnabled = false;
-        }
-
-        private void ParkingService_Checked(object sender, RoutedEventArgs e)
-        {
-            ParqueoEspaciotxt.IsEnabled = ParkingService.IsChecked == true;
-            ParqueoHoratxt.IsEnabled = ParkingService.IsChecked == true;
-        }
-
-        private void ParkingService_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ParqueoEspaciotxt.IsEnabled = false;
-            ParqueoHoratxt.IsEnabled = false;
-        }
-
-        #endregion
-
-        private void Modelotxt_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Placatxt_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-      
     }
 }
