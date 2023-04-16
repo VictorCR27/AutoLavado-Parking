@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace ProyectoDiseñoApps.view
@@ -15,7 +16,7 @@ namespace ProyectoDiseñoApps.view
         {
             InitializeComponent();
 
-    
+            horaBox.Text = DateTime.Now.ToString("hh:mm tt"); // hh:mm tt muestra la hora en formato de 12 horas con AM o PM
             servicio_estacionamientoPremium.Checked += estacionamientoPremium_Checked;
             servicio_estacionamientoPremium.Unchecked += estacionamientoPremium_Unchecked;
             servicioEstacionamiento.Checked += estacionamientoBasico_Checked;
@@ -89,6 +90,12 @@ namespace ProyectoDiseñoApps.view
             //añade la informacion a la base de datos
             dataAccess datos = new dataAccess();
             datos.addServicio(modeloBox.Text, placaBox.Text, tipoServicio, espacioBox.Text, horaBox.Text);
+        }
+
+        private void StatusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StatusView Status = new StatusView();
+            Status.Show();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProyectoDiseñoApps.Database
 {
@@ -31,9 +32,10 @@ namespace ProyectoDiseñoApps.Database
                     cmd.Parameters.AddWithValue("@CarroPlaca", CarroPlaca.Trim());
                     cmd.Parameters.AddWithValue("@TipoServicio", TipoServicio.Trim());
                     cmd.Parameters.AddWithValue("@ParqueoEspacio", ParqueoEspacio.Trim());
-                    cmd.Parameters.AddWithValue("@ParqueoHora", ParqueoHora.Trim());
-                        
+                    cmd.Parameters.AddWithValue("@ParqueoHora", DateTime.Now.ToString("h:mm tt"));
+
                     cmd.ExecuteNonQuery(); //ejecuta el query
+                    MessageBox.Show($" Servicio Agragado");
                 } return true;
             } catch { throw; }
 

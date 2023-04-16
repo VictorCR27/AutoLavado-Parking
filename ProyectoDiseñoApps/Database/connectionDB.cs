@@ -9,7 +9,7 @@ namespace ProyectoDiseñoApps
 {
     public class ConnectionDB 
     {
-        public SqlConnection connect = new SqlConnection("Data Source=.; Initial Catalog= DBDiseñoApps; Integrated Security= True");
+        public SqlConnection connect = new SqlConnection("data source=PC\\SQLEXPRESS;initial catalog=Autolavado; user id=UserAutoLavado;password=1234;");
     }
 
 }
