@@ -13,11 +13,12 @@ namespace ProyectoDiseñoApps.Database
     {
 
         #region añadirServicio
-        public bool addServicio(String CarroModelo,String CarroPlaca, String TipoServicio, String ParqueoEspacio, String ParqueoHora)
+        public bool addServicio(String CarroModelo, String CarroPlaca, String TipoServicio, String ParqueoEspacio, String ParqueoHora)
         {
             //establece conexion a la base de datos
             ConnectionDB con = new ConnectionDB();
-            if(ConnectionState.Closed == con.connect.State) {
+            if (ConnectionState.Closed == con.connect.State)
+            {
                 con.connect.Open();
             }
 
@@ -32,11 +33,17 @@ namespace ProyectoDiseñoApps.Database
                     cmd.Parameters.AddWithValue("@CarroPlaca", CarroPlaca.Trim());
                     cmd.Parameters.AddWithValue("@TipoServicio", TipoServicio.Trim());
                     cmd.Parameters.AddWithValue("@ParqueoEspacio", ParqueoEspacio.Trim());
-                    cmd.Parameters.AddWithValue("@ParqueoHora", DateTime.Now.ToString("h:mm tt"));
+                    cmd.Parameters.AddWithValue("@ParqueoHora", ParqueoHora);
 
                     cmd.ExecuteNonQuery(); //ejecuta el query
-                    MessageBox.Show($" Servicio Agragado");
-                } return true;
+                    MessageBox.Show($" Servicio Agregado");
+                }
+                // Cierra la conexión después de usarla
+                if (con.connect.State == ConnectionState.Open)
+                {
+                    con.connect.Close();
+                }
+                return true;
             } catch { throw; }
 
             #endregion

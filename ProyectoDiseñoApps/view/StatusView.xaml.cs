@@ -39,7 +39,10 @@ namespace ProyectoDiseñoApps.view
         {
             try
             {
-                connectionDB.connect.Open();
+                if (connectionDB.connect.State != ConnectionState.Open)
+                {
+                    connectionDB.connect.Open();
+                }
                 SqlCommand command = new SqlCommand("SELECT * FROM Servicios", connectionDB.connect);
                 SqlDataReader reader = command.ExecuteReader();
                 DataTable dataTable = new DataTable();
@@ -53,7 +56,10 @@ namespace ProyectoDiseñoApps.view
             }
             finally
             {
-                connectionDB.connect.Close();
+                if (connectionDB.connect.State == ConnectionState.Open)
+                {
+                    connectionDB.connect.Close();
+                }
             }
         }
 
