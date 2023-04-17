@@ -7,7 +7,49 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Admin" HorizontalAlignment="Left" Margin="227,0,0,0" VerticalAlignment="Center" Height="85" Width="177" Background="White" FontSize="48"/>
-
+        <TextBox x:Name="nombreBox" HorizontalAlignment="Left" Margin="45,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182"/>
+        <Label x:Name="nombreLabel" Content="Nombre:" HorizontalAlignment="Left" Margin="40,67,0,0" VerticalAlignment="Top" Width="105" FontWeight="Bold" FontSize="14">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE8E3E3"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="cedulaBox" HorizontalAlignment="Left" Margin="45,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182"/>
+        <Label x:Name="cedulaLabel" Content="Cedula:" HorizontalAlignment="Left" Margin="42,167,0,0" VerticalAlignment="Top" Width="105" FontWeight="Bold" FontSize="14">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE8E3E3"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="correoBox" HorizontalAlignment="Left" Margin="45,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182"/>
+        <Label x:Name="correoLabel" Content="Correo" HorizontalAlignment="Left" Margin="40,117,0,0" VerticalAlignment="Top" Width="105" FontWeight="Bold" FontSize="14">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE8E3E3"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="285,34,46,37" SelectionChanged="DataGrid_SelectionChanged"/>
+        <Button x:Name="addButton" Content="AÑADIR" HorizontalAlignment="Left" Margin="62,266,0,0" VerticalAlignment="Top" Height="48" Width="148" FontWeight="Bold" FontSize="14" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF44A61A"/>
+                    <GradientStop Color="#FF2D6A13" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="removeButton" Content="ELIMINAR" HorizontalAlignment="Left" Margin="62,340,0,0" VerticalAlignment="Top" Height="48" Width="148" Foreground="White" FontWeight="Bold" FontSize="16">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBD1313"/>
+                    <GradientStop Color="#FF620D0D" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>
