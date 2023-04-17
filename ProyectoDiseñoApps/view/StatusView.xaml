@@ -14,8 +14,22 @@
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button Content="Asignar" Click="AsignarBtn_Click"/>
-                            <Button Content="Finalizar" Click="FinalizarBtn_Click"/>
+                            <Button Content="Asignar" Click="AsignarBtn_Click"  FontWeight="Bold" Foreground="White">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2DE1E8"/>
+                                        <GradientStop Color="#FF226783" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                            <Button Content="Finalizar" Click="FinalizarBtn_Click" FontWeight="Bold" Foreground="White">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE92222"/>
+                                        <GradientStop Color="#FF7B0E0E" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
                         </StackPanel>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>

@@ -43,7 +43,8 @@
         </StackPanel>
 
         <Label FontSize="15" Foreground="White" Content="Espacio de estacionamento (estacionamiento):" Margin="50,283,419,177" />
-        <TextBox  Name="espacioBox" IsEnabled="False" Margin="57,315,569,197" />
+        <!--<TextBox  Name="espacioBox" IsEnabled="False" Margin="57,315,569,197" />-->
+        <ComboBox Name="espacioBox" HorizontalAlignment="Left" Margin="57,314,0,0" VerticalAlignment="Top" Width="120" />
 
         <Label FontSize="15" Foreground="White" Content="Hora de ingreso (estacionamiento):" Margin="50,346,490,106" />
         <TextBox Name="horaBox" IsEnabled="False" IsReadOnly="True" Margin="57,377,569,135" />
@@ -65,5 +66,6 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        
     </Grid>
 </UserControl>

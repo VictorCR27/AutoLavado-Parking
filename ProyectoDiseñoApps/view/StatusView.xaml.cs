@@ -27,12 +27,16 @@ namespace ProyectoDiseñoApps.view
         ConnectionDB con = new ConnectionDB();
 
         private ConnectionDB connectionDB;
+       
 
         public StatusView()
         {
             InitializeComponent();
             connectionDB = new ConnectionDB();
             LoadData();
+
+            // Deshabilita la opción de agregar filas al dataGrid
+            dataGrid.CanUserAddRows = false;
         }
 
         private void LoadData()
@@ -43,7 +47,10 @@ namespace ProyectoDiseñoApps.view
                 {
                     connectionDB.connect.Open();
                 }
-                SqlCommand command = new SqlCommand("SELECT * FROM Servicios", connectionDB.connect);
+
+                SqlCommand command = new SqlCommand("SELECT * FROM Servicios WHERE estado = 1", connectionDB.connect);
+
+
                 SqlDataReader reader = command.ExecuteReader();
                 DataTable dataTable = new DataTable();
                 dataTable.Load(reader);
@@ -71,14 +78,20 @@ namespace ProyectoDiseñoApps.view
                 try
                 {
                     connectionDB.connect.Open();
-                    SqlCommand command = new SqlCommand("DELETE FROM Servicios WHERE id = @id", connectionDB.connect);
+                    SqlCommand command = new SqlCommand("Update Servicios SET estado = 0 WHERE id = @id", connectionDB.connect);
                     command.Parameters.AddWithValue("@id", rowView["id"]);
+
+                    // Corrige el valor del parámetro estado en el segundo comando SQL
+                    SqlCommand command2 = new SqlCommand("UPDATE EspacioParqueo SET estado = 0 WHERE Descripcion = @ParqueoEspacio", connectionDB.connect);
+                    command2.Parameters.AddWithValue("@ParqueoEspacio", rowView["ParqueoEspacio"]);
+
                     command.ExecuteNonQuery();
-                    LoadData();
+                    command2.ExecuteNonQuery(); // Ejecuta el segundo comando SQL
+                    LoadData(); // Actualiza el DataGrid con los cambios más recientes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al eliminar el servicio: " + ex.Message);
+                    MessageBox.Show("Error al finalizar el servicio: " + ex.Message);
                 }
                 finally
                 {
@@ -86,6 +99,8 @@ namespace ProyectoDiseñoApps.view
                 }
             }
         }
+
+
 
         private void AsignarBtn_Click(object sender, RoutedEventArgs e)
         {
