@@ -14,6 +14,12 @@ namespace ProyectoDiseñoApps.view
 {
     public partial class ServiciosView : UserControl
     {
+        private const double PrecioServicioBronce = 10000;
+        private const double PrecioServicioBasico = 5000;
+        private const double PrecioServicioPremium = 15000;
+        private const double PrecioServicioEstacionamientoPremium = 10000;
+        private const double PrecioServicioEstacionamiento = 500;
+
 
         ConnectionDB con = new ConnectionDB();
 
@@ -33,6 +39,47 @@ namespace ProyectoDiseñoApps.view
             connectionDB = new ConnectionDB();
 
         }
+
+        private void ServicioRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Cobrotxt == null) return;
+
+            var radioButton = (System.Windows.Controls.RadioButton)sender;
+            double precio = 0.0;
+
+            if (radioButton == servicioBronce)
+                precio = PrecioServicioBronce;
+            else if (radioButton == servicioBasico)
+                precio = PrecioServicioBasico;
+            else if (radioButton == servicioPremium)
+                precio = PrecioServicioPremium;
+            else if (radioButton == servicio_estacionamientoPremium)
+                precio = PrecioServicioEstacionamientoPremium;
+            else if (radioButton == servicioEstacionamiento)
+                precio = PrecioServicioEstacionamiento;
+
+            Cobrotxt.Content = $"Total a cobrar: ₡{precio:0,0.00}";
+        }
+
+        private void ServicioRadioButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Cobrotxt == null) return;
+
+            var radioButton = (System.Windows.Controls.RadioButton)sender;
+            double precio = 0.0;
+
+            if (radioButton == servicioBronce)
+                precio = PrecioServicioBronce;
+            else if (radioButton == servicioBasico)
+                precio = PrecioServicioBasico;
+            else if (radioButton == servicioPremium)
+                precio = PrecioServicioPremium;
+            else if (radioButton == servicio_estacionamientoPremium)
+                precio = PrecioServicioEstacionamientoPremium;
+
+            Cobrotxt.Content = $"Total a cobrar: ₡{precio:0,0.00}";
+        }
+
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -66,27 +113,38 @@ namespace ProyectoDiseñoApps.view
 
         private void estacionamientoPremium_Checked(object sender, RoutedEventArgs e)
         {
-            espacioBox.IsEnabled = servicio_estacionamientoPremium.IsChecked == true;
-            horaBox.IsEnabled = servicio_estacionamientoPremium.IsChecked == true;
+            if (espacioBox != null && horaBox != null)
+            {
+                espacioBox.IsEnabled = true;
+                horaBox.IsEnabled = true;
+            }
         }
 
         private void estacionamientoPremium_Unchecked(object sender, RoutedEventArgs e)
         {
-            espacioBox.IsEnabled = false;
-            horaBox.IsEnabled = false;
+            if (espacioBox != null && horaBox != null)
+            {
+                espacioBox.IsEnabled = false;
+                horaBox.IsEnabled = false;
+            }
         }
 
         private void estacionamientoBasico_Checked(object sender, RoutedEventArgs e)
         {
-            espacioBox.IsEnabled = servicioEstacionamiento.IsChecked == true;
-            horaBox.IsEnabled = servicioEstacionamiento.IsChecked == true;
-
+            if (espacioBox != null && horaBox != null)
+            {
+                espacioBox.IsEnabled = true;
+                horaBox.IsEnabled = true;
+            }
         }
 
         private void estacionamientoBasico_Unchecked(object sender, RoutedEventArgs e)
         {
-            espacioBox.IsEnabled = false;
-            horaBox.IsEnabled = false;
+            if (espacioBox != null && horaBox != null)
+            {
+                espacioBox.IsEnabled = false;
+                horaBox.IsEnabled = false;
+            }
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDiseñoApps.view;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,7 +13,8 @@ namespace ProyectoDiseñoApps.Database
     class dataAccess
     {
         private object dbAccess;
-        
+        private object contenidoControl;
+
 
         #region añadirServicio
         public bool addServicio(String CarroModelo, String CarroPlaca, String TipoServicio, String ParqueoEspacio, String ParqueoHora )
@@ -47,6 +49,10 @@ namespace ProyectoDiseñoApps.Database
                     cmd2.ExecuteNonQuery(); //ejecuta el segundo query
 
                     MessageBox.Show($"Servicio Agregado");
+
+                    
+
+
                 }
                 // Cierra la conexión después de usarla
                 if (con.connect.State == ConnectionState.Open)
