@@ -33,7 +33,7 @@
                     <GradientStop Color="#1B1448" Offset="0.75"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Button Content="INGRESAR" Margin="77,301,77,111" FontWeight="Bold" Foreground="White">
+            <Button Content="INGRESAR" Margin="77,301,77,111" FontWeight="Bold" Foreground="White" Click="Button_Click">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFA123CE" Offset="0.014"/>
