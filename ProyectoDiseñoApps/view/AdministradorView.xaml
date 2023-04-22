@@ -7,7 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Admin" HorizontalAlignment="Left" Margin="227,0,0,0" VerticalAlignment="Center" Height="85" Width="177" Background="White" FontSize="48"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <TextBlock Text="Ganancias de Servicios" FontSize="20" FontWeight="Bold" Margin="10" Foreground="White" />
+        
     </Grid>
+
 </UserControl>

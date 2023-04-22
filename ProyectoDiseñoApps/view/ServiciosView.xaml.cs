@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using UserControl = System.Windows.Controls.UserControl;
 
@@ -24,6 +25,10 @@ namespace ProyectoDiseñoApps.view
         ConnectionDB con = new ConnectionDB();
 
         private ConnectionDB connectionDB;
+        private object serviciosTable;
+
+        public Action<object, EventArgs> ServiceAdded { get; internal set; }
+
         public ServiciosView()
         {
             InitializeComponent();
@@ -37,6 +42,9 @@ namespace ProyectoDiseñoApps.view
             Loaded += MainWindow_Loaded;
 
             connectionDB = new ConnectionDB();
+
+            espacioBox.IsEnabled = false;
+            horaBox.IsEnabled = false;
 
         }
 
@@ -115,8 +123,11 @@ namespace ProyectoDiseñoApps.view
         {
             if (espacioBox != null && horaBox != null)
             {
-                espacioBox.IsEnabled = true;
-                horaBox.IsEnabled = true;
+                if (servicio_estacionamientoPremium.IsChecked == true || servicioEstacionamiento.IsChecked == true)
+                {
+                    espacioBox.IsEnabled = true;
+                    horaBox.IsEnabled = true;
+                }
             }
         }
 
@@ -124,8 +135,11 @@ namespace ProyectoDiseñoApps.view
         {
             if (espacioBox != null && horaBox != null)
             {
-                espacioBox.IsEnabled = false;
-                horaBox.IsEnabled = false;
+                if (servicioEstacionamiento.IsChecked == false)
+                {
+                    espacioBox.IsEnabled = false;
+                    horaBox.IsEnabled = false;
+                }
             }
         }
 
@@ -133,8 +147,11 @@ namespace ProyectoDiseñoApps.view
         {
             if (espacioBox != null && horaBox != null)
             {
-                espacioBox.IsEnabled = true;
-                horaBox.IsEnabled = true;
+                if (servicio_estacionamientoPremium.IsChecked == true || servicioEstacionamiento.IsChecked == true)
+                {
+                    espacioBox.IsEnabled = true;
+                    horaBox.IsEnabled = true;
+                }
             }
         }
 
@@ -142,48 +159,59 @@ namespace ProyectoDiseñoApps.view
         {
             if (espacioBox != null && horaBox != null)
             {
-                espacioBox.IsEnabled = false;
-                horaBox.IsEnabled = false;
+                if (servicio_estacionamientoPremium.IsChecked == false)
+                {
+                    espacioBox.IsEnabled = false;
+                    horaBox.IsEnabled = false;
+                }
             }
         }
+
+
+
 
         #endregion
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-       
             string tipoServicio;
+            decimal precioServicio;
 
-            //TO DO: reemplazar esto por un switch o algo mas simple
             if (servicioBronce.IsChecked == true)
             {
                 tipoServicio = "Bronce";
+                precioServicio = (decimal)PrecioServicioBronce;
             }
             else if (servicioBasico.IsChecked == true)
             {
                 tipoServicio = "Básico";
+                precioServicio = (decimal)PrecioServicioBasico;
             }
             else if (servicioPremium.IsChecked == true)
             {
                 tipoServicio = "Premium";
+                precioServicio = (decimal)PrecioServicioPremium;
             }
             else if (servicio_estacionamientoPremium.IsChecked == true)
             {
                 tipoServicio = "Servicio de lavado y parqueo";
+                precioServicio = (decimal)PrecioServicioEstacionamientoPremium;
             }
             else if (servicioEstacionamiento.IsChecked == true)
             {
                 tipoServicio = "Servicio de parqueo";
+                precioServicio = (decimal)PrecioServicioEstacionamiento;
             }
             else
             {
                 tipoServicio = "No seleccionado";
+                precioServicio = 0;
             }
 
-           
+
             //añade la informacion a la base de datos
             dataAccess datos = new dataAccess();
-            datos.addServicio(modeloBox.Text, placaBox.Text, tipoServicio, espacioBox.Text, horaBox.Text);
+            datos.addServicio(modeloBox.Text, placaBox.Text, tipoServicio, espacioBox.Text, horaBox.Text, precioServicio);
         }
 
         private void StatusBtn_Click(object sender, RoutedEventArgs e)
@@ -191,6 +219,8 @@ namespace ProyectoDiseñoApps.view
             StatusView Status = new StatusView();
             Status.Show();
         }
+
+
 
     }
 }

@@ -27,7 +27,7 @@ namespace ProyectoDiseñoApps.view
         ConnectionDB con = new ConnectionDB();
 
         private ConnectionDB connectionDB;
-       
+        
 
         public StatusView()
         {
@@ -70,6 +70,8 @@ namespace ProyectoDiseñoApps.view
             }
         }
 
+
+
         private void FinalizarBtn_Click(object sender, RoutedEventArgs e)
         {
             DataRowView rowView = (DataRowView)dataGrid.SelectedItem;
@@ -100,7 +102,49 @@ namespace ProyectoDiseñoApps.view
             }
         }
 
+        public SolidColorBrush GetStatusColor(int estado)
+        {
+            if (estado == 1)
+            {
+                return Brushes.Red; // Ocupado
+            }
+            else
+            {
+                return Brushes.Green; // Desocupado
+            }
+        }
 
+        public DataTable GetData(string query)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                if (connectionDB.connect.State != ConnectionState.Open)
+                {
+                    connectionDB.connect.Open();
+                }
+
+                SqlCommand command = new SqlCommand(query, connectionDB.connect);
+                SqlDataReader reader = command.ExecuteReader();
+                dataTable.Load(reader);
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+            finally
+            {
+                if (connectionDB.connect.State == ConnectionState.Open)
+                {
+                    connectionDB.connect.Close();
+                }
+            }
+
+            return dataTable;
+        }
+
+        
 
         private void AsignarBtn_Click(object sender, RoutedEventArgs e)
         {

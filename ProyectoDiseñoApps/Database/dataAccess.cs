@@ -17,8 +17,8 @@ namespace ProyectoDiseñoApps.Database
 
 
         #region añadirServicio
-        public bool addServicio(String CarroModelo, String CarroPlaca, String TipoServicio, String ParqueoEspacio, String ParqueoHora )
-        { 
+        public bool addServicio(String CarroModelo, String CarroPlaca, String TipoServicio, String ParqueoEspacio, String ParqueoHora, decimal Costo)
+        {
             //establece conexion a la base de datos
             ConnectionDB con = new ConnectionDB();
             if (ConnectionState.Closed == con.connect.State)
@@ -26,13 +26,12 @@ namespace ProyectoDiseñoApps.Database
                 con.connect.Open();
             }
 
-            String query = "Insert into Servicios(CarroModelo,CarroPlaca,TipoServicio,ParqueoEspacio,ParqueoHora, estado) VALUES (@CarroModelo,@CarroPlaca,@TipoServicio,@ParqueoEspacio,@ParqueoHora,1)";
-            String query2 = "UPDATE EspacioParqueo SET estado = 1 WHERE descripcion = @ParqueoEspacio";
+            String query = "INSERT INTO Servicios(CarroModelo, CarroPlaca, TipoServicio, ParqueoEspacio, ParqueoHora, estado, Costo) VALUES (@CarroModelo, @CarroPlaca, @TipoServicio, @ParqueoEspacio, @ParqueoHora, 1, @Precio)"; String query2 = "UPDATE EspacioParqueo SET estado = 1 WHERE descripcion = @ParqueoEspacio";
 
             try
             {
                 using (SqlCommand cmd = new SqlCommand(query, con.connect))
-                    
+
                 {
                     //añade los valores al query
                     cmd.Parameters.AddWithValue("@CarroModelo", CarroModelo.Trim());
@@ -40,17 +39,17 @@ namespace ProyectoDiseñoApps.Database
                     cmd.Parameters.AddWithValue("@TipoServicio", TipoServicio.Trim());
                     cmd.Parameters.AddWithValue("@ParqueoEspacio", ParqueoEspacio.Trim());
                     cmd.Parameters.AddWithValue("@ParqueoHora", ParqueoHora);
+                    cmd.Parameters.AddWithValue("@Precio", Costo);
 
-                    cmd.ExecuteNonQuery(); 
-                    
+                    cmd.ExecuteNonQuery();
+
                     //Ejecuta el segundo query de update para modificar el estado del espacio de parqueo
                     SqlCommand cmd2 = new SqlCommand(query2, con.connect);
                     cmd2.Parameters.AddWithValue("@ParqueoEspacio", ParqueoEspacio.Trim());
                     cmd2.ExecuteNonQuery(); //ejecuta el segundo query
 
                     MessageBox.Show($"Servicio Agregado");
-
-                    
+        
 
 
                 }

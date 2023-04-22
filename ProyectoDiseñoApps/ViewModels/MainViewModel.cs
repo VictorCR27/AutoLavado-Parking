@@ -105,8 +105,8 @@ namespace ProyectoDiseñoApps.ViewModels
         private void ExecuteShowEstadoViewCommand(object obj)
         {
             CurrentChildView = new EstadoViewModel();
-            Caption = "Estado de Servicios";
-            Icon = IconChar.Servicestack;
+            Caption = "Descripción de Servicios";
+            Icon = IconChar.Slideshare;
         }
 
         private void ExecuteShowAdministradorViewCommand(object obj)

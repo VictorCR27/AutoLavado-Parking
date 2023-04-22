@@ -110,8 +110,8 @@
                                  Command="{Binding ShowEstadoViewCommand}" Checked="RadioButton_Checked_1">
 
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Servicestack" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Estado de servicios" Style="{StaticResource menuButtonText}"/>
+                            <fa:IconImage Icon="Slideshare" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Descripción de servicios" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
