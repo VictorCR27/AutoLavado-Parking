@@ -1,0 +1,75 @@
+﻿<Window x:Class="ProyectoDiseñoApps.view.logView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoDiseñoApps.view"
+        mc:Ignorable="d"
+        Title="logView" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+
+
+
+
+    <Grid>
+        <Border CornerRadius="50"
+            BorderThickness="1" Margin="253,0,253,0">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#46A2D8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Content="INGRESAR" Margin="77,301,77,111" FontWeight="Bold" Foreground="White" Click="Button_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA123CE" Offset="0.014"/>
+                        <GradientStop Color="#FFB732AF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+        </Border>
+        <Label x:Name="usuarioLabel" Content="Ingrese su correo:" HorizontalAlignment="Left" Height="28" Margin="289,103,0,0" VerticalAlignment="Top" Width="107" Foreground="#FFF1F1F1" FontFamily="Nirmala UI"/>
+
+        <TextBox Name="txtUser"
+            FontSize="13"
+            FontWeight="Medium"
+            FontFamily="Montserrat"
+            Background="Transparent"
+            Foreground="White"
+            CaretBrush="LightGray"
+            BorderBrush="DarkGray"
+            BorderThickness="0,0,0,1"
+            VerticalContentAlignment="Center"
+            Margin="0,121,0,287"
+            HorizontalAlignment="Center" Width="216"
+                />
+        <TextBox Name="txtPass"
+            FontSize="13"
+            FontWeight="Medium"
+            FontFamily="Montserrat"
+            Background="Transparent"
+            Foreground="White"
+            CaretBrush="LightGray"
+            BorderBrush="DarkGray"
+            BorderThickness="0,0,0,1"
+            VerticalContentAlignment="Center"
+            Margin="0,208,0,200"
+            HorizontalAlignment="Center" Width="216"/>
+        <Label x:Name="passLabel" Content="Ingrese su contraseña:" HorizontalAlignment="Left" Margin="289,192,0,0" VerticalAlignment="Top" Width="151" Foreground="#FFF1F1F1"/>
+    </Grid>
+</Window>

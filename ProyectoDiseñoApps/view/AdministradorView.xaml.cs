@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDiseñoApps.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace ProyectoDiseñoApps.view
         public AdministradorView()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            dataAccess datos = new dataAccess();
+            datos.addEmpleado(nombreBox.Text, correoBox.Text, cedulaBox.Text);
         }
     }
 }
