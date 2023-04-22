@@ -7,6 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Margin="25,25,0,25">
+
+    
     <Grid Margin="17,-20,0,25">
 
         <Grid.RowDefinitions>
@@ -26,7 +28,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-
+        
         <Label  VerticalAlignment="Top" Content="Modelo del vehículo:" Foreground="White" Background="{x:Null}" Height="34" FontSize="20" Margin="44,12,532,0" />
         <TextBox x:Name="modeloBox" Margin="50,48,567,465"  />
 
@@ -35,21 +37,22 @@
 
         <Label FontSize="20" Content="Servicios:" Foreground="White" Margin="50,138,628,275"/>
         <StackPanel Name="serviciosBtn" Margin="50,169,353,201">
-            <RadioButton FontSize="15" Foreground="White" x:Name="servicioBronce" Content="Servicio de lavado bronce" />
-            <RadioButton FontSize="15" Foreground="White" Name="servicioBasico" Content="Servicio de lavado básico" />
-            <RadioButton FontSize="15" Foreground="White" Name="servicioPremium" Content="Servicio de lavado premium" />
-            <RadioButton FontSize="15" Foreground="White" Name="servicio_estacionamientoPremium" Content="Servicio de lavado con estacionamiento" Checked="estacionamientoPremium_Checked" Unchecked="estacionamientoPremium_Unchecked"/>
-            <RadioButton FontSize="15" Foreground="White" Name="servicioEstacionamiento" Content="Servicio de estacionamiento" Checked="estacionamientoBasico_Checked" Unchecked="estacionamientoBasico_Unchecked" Height="36" Width="475" />
+            <RadioButton FontSize="15" Foreground="White" x:Name="servicioBronce" Content="Servicio de lavado bronce" Checked="ServicioRadioButton_Checked" />
+            <RadioButton FontSize="15" Foreground="White" Name="servicioBasico" Content="Servicio de lavado básico" Checked="ServicioRadioButton_Checked" />
+            <RadioButton FontSize="15" Foreground="White" Name="servicioPremium" Content="Servicio de lavado premium" Checked="ServicioRadioButton_Checked" />
+            <RadioButton FontSize="15" Foreground="White" Name="servicio_estacionamientoPremium" Content="Servicio de lavado con estacionamiento" Checked="ServicioRadioButton_Checked" Unchecked="estacionamientoPremium_Unchecked"/>
+            <RadioButton FontSize="15" Foreground="White" Name="servicioEstacionamiento" Content="Servicio de estacionamiento" Checked="ServicioRadioButton_Checked" Unchecked="ServicioRadioButton_Unchecked" Height="36" Width="475" />
         </StackPanel>
 
         <Label FontSize="15" Foreground="White" Content="Espacio de estacionamento (estacionamiento):" Margin="50,283,419,177" />
-        <TextBox  Name="espacioBox" IsEnabled="False" Margin="57,315,569,197" />
+        <!--<TextBox  Name="espacioBox" IsEnabled="False" Margin="57,315,569,197" />-->
+        <ComboBox Name="espacioBox" HorizontalAlignment="Left" Margin="57,314,0,0" VerticalAlignment="Top" Width="120" />
 
-        <Label  FontSize="15" Foreground="White" Content="Hora de ingreso (estacionamiento):" Margin="50,346,490,106" />
-        <TextBox Name="horaBox" IsEnabled="False" Margin="57,377,569,135" />
+        <Label FontSize="15" Foreground="White" Content="Hora de ingreso (estacionamiento):" Margin="50,346,490,106" />
+        <TextBox Name="horaBox" IsEnabled="False" IsReadOnly="True" Margin="57,377,569,135" />
 
-        <Label Name="TotalLabel" Foreground="White" Content="Total a cobrar: $0.00" Margin="445,402,210,80" />
-        <Button x:Name="addServicios" Content="Agregar Servicios" HorizontalAlignment="Left" Margin="596,393,0,0" VerticalAlignment="Top" Height="44" Width="153" Click="Button_Click" FontWeight="Bold" Foreground="White">
+        <Label Name="Cobrotxt" Foreground="White" Content="Total a cobrar: ₡" Margin="445,402,210,80" />
+        <Button x:Name="addServicios" Content="Agregar Servicios" HorizontalAlignment="Left" Margin="594,393,0,0" VerticalAlignment="Top" Height="44" Width="153" Click="Button_Click" FontWeight="Bold" Foreground="White">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFE92222"/>
@@ -57,5 +60,14 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <Button x:Name="StatusBtn" Content="Estado de cola" HorizontalAlignment="Left" Margin="621,23,0,0" VerticalAlignment="Top" Height="44" Width="105" Click="StatusBtn_Click"  FontWeight="Bold" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2DE1E8"/>
+                    <GradientStop Color="#FF226783" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        
     </Grid>
 </UserControl>
