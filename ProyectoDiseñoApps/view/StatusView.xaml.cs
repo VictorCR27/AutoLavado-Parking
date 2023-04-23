@@ -96,7 +96,12 @@ namespace ProyectoDiseñoApps.view
                     command2.ExecuteNonQuery(); // Ejecuta el segundo comando SQL
                     LoadData(); // Actualiza el DataGrid con los cambios más recientes
 
-                    using (SqlCommand command3 = new SqlCommand("SELECT Total FROM (SELECT *, DATEDIFF(MINUTE, HoraEntrada, HoraSalida) AS DiferenciaEnMinutos, DATEDIFF(MINUTE, HoraEntrada, HoraSalida) * 500 AS Total FROM Servicios) AS Subquery WHERE Id = @Id;", connectionDB.connect))
+                    using (SqlCommand command3 = new SqlCommand("SELECT " +
+                                                                "CASE " +
+                                                                "WHEN TipoServicio = 'Servicio de parqueo' " +
+                                                                "THEN DATEDIFF(MINUTE, HoraEntrada, HoraSalida) * 500 ELSE Costo END AS Total FROM (" +
+                                                                 "SELECT *, DATEDIFF(MINUTE, HoraEntrada, HoraSalida) AS DiferenciaEnMinutos FROM Servicios) " +
+                                                                 "AS Subquery WHERE Id = @Id",connectionDB.connect))
                     {
                         connectionDB.connect.Open();
 
@@ -180,7 +185,7 @@ namespace ProyectoDiseñoApps.view
             return dataTable;
         }
 
-        
+
 
         private void AsignarBtn_Click(object sender, RoutedEventArgs e)
         {

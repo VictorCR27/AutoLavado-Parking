@@ -8,14 +8,14 @@
         Title="StatusView" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
 
-    <DataGrid x:Name="dataGrid" Margin="10,10,10,50" AutoGenerateColumns="True">
+    <DataGrid x:Name="dataGrid" Margin="10,10,10,68" AutoGenerateColumns="True">
         <DataGrid.Columns>
             <DataGridTemplateColumn>
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button Content="Asignar" Click="AsignarBtn_Click"  FontWeight="Bold" Foreground="White">
-                                <Button.Background>
+                            <Button x:Name="AsignarBtn" Content="Asignar" Click="AsignarBtn_Click" FontWeight="Bold" Foreground="White">
+                            <Button.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF2DE1E8"/>
                                         <GradientStop Color="#FF226783" Offset="1"/>

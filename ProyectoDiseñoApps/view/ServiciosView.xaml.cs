@@ -21,11 +21,13 @@ namespace ProyectoDiseñoApps.view
         private const double PrecioServicioEstacionamientoPremium = 10000;
         private const double PrecioServicioEstacionamiento = 500;
 
-
         ConnectionDB con = new ConnectionDB();
+
+        int costoParqueo = 0;
 
         private ConnectionDB connectionDB;
         private object serviciosTable;
+        private object dataGridEmpleados;
 
         public Action<object, EventArgs> ServiceAdded { get; internal set; }
 
@@ -220,7 +222,11 @@ namespace ProyectoDiseñoApps.view
             Status.Show();
         }
 
+       
+        private void servicioEstacionamiento_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
 
     }
 }

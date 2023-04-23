@@ -41,7 +41,7 @@
             <RadioButton FontSize="15" Foreground="White" Name="servicioBasico" Content="Servicio de lavado básico" Checked="ServicioRadioButton_Checked" />
             <RadioButton FontSize="15" Foreground="White" Name="servicioPremium" Content="Servicio de lavado premium" Checked="ServicioRadioButton_Checked" />
             <RadioButton FontSize="15" Foreground="White" Name="servicio_estacionamientoPremium" Content="Servicio de lavado con estacionamiento" Checked="ServicioRadioButton_Checked" Unchecked="estacionamientoPremium_Unchecked"/>
-            <RadioButton FontSize="15" Foreground="White" Name="servicioEstacionamiento" Content="Servicio de estacionamiento" Checked="ServicioRadioButton_Checked" Unchecked="ServicioRadioButton_Unchecked" Height="36" Width="475" />
+            <RadioButton FontSize="15" Foreground="White" Name="servicioEstacionamiento" Content="Servicio de estacionamiento" Click="servicioEstacionamiento_Click" Checked="ServicioRadioButton_Checked" Unchecked="ServicioRadioButton_Unchecked" Height="36" Width="475" />
         </StackPanel>
 
         <Label FontSize="15" Foreground="White" Content="Espacio de estacionamento (estacionamiento):" Margin="50,283,419,177" />
@@ -69,5 +69,7 @@
             </Button.Background>
         </Button>
         
+        <DataGrid Name="dataGrid" Grid.Row="14" SelectionMode="Single" AutoGenerateColumns="True" IsReadOnly="True"/>
+
     </Grid>
 </UserControl>

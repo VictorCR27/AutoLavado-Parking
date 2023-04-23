@@ -17,6 +17,7 @@
 
 
     <Grid>
+
         <Border CornerRadius="50"
             BorderThickness="1" Margin="253,0,253,0">
             <Border.BorderBrush>
@@ -71,5 +72,7 @@
             Margin="0,208,0,200"
             HorizontalAlignment="Center" Width="216"/>
         <Label x:Name="passLabel" Content="Ingrese su contraseña:" HorizontalAlignment="Left" Margin="289,192,0,0" VerticalAlignment="Top" Width="151" Foreground="#FFF1F1F1"/>
+
+        <Image Source="/img/logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,17,0,0" Height="90" Width="136" />
     </Grid>
 </Window>
