@@ -26,7 +26,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Servicio Bronce" Foreground="White" FontWeight="Bold" FontSize="16" Margin="6,0,-5,0"/>
-                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Descripción del servicio Bronce." Margin="6,2,35,7" Grid.Row="1"/>
+                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Este es un servicio de lavado que ofrece una solución de bajo costo para los clientes que buscan un lugar seguro y confiable para aparcar su vehículo. El servicio Bronce no incluye servicios Este servicio ofrece un lavado básico para su vehículo, que incluye limpieza exterior, enjuague y secado." Margin="6,2,35,7" Grid.Row="1"/>
             </Grid>
         </Border>
         <!-- Recuadro 2 -->
@@ -37,7 +37,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Servicio Básico" Foreground="White" FontWeight="Bold" FontSize="16" Margin="12,0,-12,0"/>
-                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Descripción del servicio Básico." Margin="12,21,60,0" Grid.RowSpan="2"/>
+                <TextBlock TextWrapping="Wrap" Foreground="White" Text="El servicio básico de lavado incluye la limpieza exterior e interior del vehículo, eliminando el polvo y la suciedad acumulados. Este servicio es perfecto para quienes desean una limpieza más profunda que el servicio Bronce sin gastar mucho tiempo o dinero." Margin="12,21,60,0" Grid.RowSpan="2"/>
             </Grid>
         </Border>
         <!-- Recuadro 3 -->
@@ -48,7 +48,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Servicio Premium" Foreground="White" FontWeight="Bold" FontSize="16" Margin="18,0,-18,0"/>
-                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Descripción del servicio Premium." Margin="16,20,37,1" Grid.RowSpan="2"/>
+                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Este servicio de lavado de autos de alta calidad ofrece una limpieza completa y detallada, tanto en el interior como en el exterior del vehículo. Además, incluye tratamientos adicionales, como encerado y pulido, para proporcionar un acabado brillante y una protección duradera para la pintura de su automóvil." Margin="16,20,37,1" Grid.RowSpan="2"/>
             </Grid>
         </Border>
         <!-- Recuadro 4 -->
@@ -59,7 +59,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Foreground="White" Text="Servicio con estacionamiento y lavado" FontWeight="Bold" FontSize="16" Margin="9,0,-67,175" Grid.RowSpan="2"/>
-                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Descripción del servicio con estacionamiento y lavado." Margin="8,21,-79,0" Grid.RowSpan="2"/>
+                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Este servicio combina la comodidad del estacionamiento con un servicio de lavado de autos completo. Mientras su automóvil está estacionado en nuestras instalaciones, nuestros profesionales lo limpiarán y lo dejarán listo para que usted lo recoja al regresar." Margin="8,21,-79,0" Grid.RowSpan="2"/>
             </Grid>
         </Border>
         <!-- Recuadro 5 -->
@@ -70,7 +70,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Foreground="White" Text="Servicio de estacionamiento" FontWeight="Bold" FontSize="16" Margin="15,1,-15,179" Grid.RowSpan="2"/>
-                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Descripción del servicio de estacionamiento." Margin="14,22,71,-1" Grid.RowSpan="2"/>
+                <TextBlock TextWrapping="Wrap" Foreground="White" Text="Nuestro servicio de estacionamiento ofrece un lugar seguro y cómodo para dejar su vehículo mientras realiza sus actividades diarias o viaja. Contamos con un sistema de seguridad avanzado y personal atento para garantizar la seguridad de su automóvil mientras esté bajo nuestro cuidado." Margin="14,22,71,-1" Grid.RowSpan="2"/>
             </Grid>
         </Border>
     </Grid>

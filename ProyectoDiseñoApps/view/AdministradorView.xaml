@@ -34,7 +34,8 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="285,34,46,37" SelectionChanged="DataGrid_SelectionChanged"/>
+
+        <DataGrid x:Name="empleadosDataGrid" Margin="285,34,46,37" SelectionChanged="DataGrid_SelectionChanged"/>
         <Button x:Name="addButton" Content="AÑADIR" HorizontalAlignment="Left" Margin="62,266,0,0" VerticalAlignment="Top" Height="48" Width="148" FontWeight="Bold" FontSize="14" Foreground="White" Click="addButton_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -43,7 +44,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="removeButton" Content="ELIMINAR" HorizontalAlignment="Left" Margin="62,340,0,0" VerticalAlignment="Top" Height="48" Width="148" Foreground="White" FontWeight="Bold" FontSize="16">
+        <Button x:Name="removeButton" Content="ELIMINAR" HorizontalAlignment="Left" Margin="62,340,0,0" VerticalAlignment="Top" Height="48" Width="148" Foreground="White" FontWeight="Bold" FontSize="16" Click="removeButton_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFBD1313"/>

@@ -113,7 +113,7 @@ namespace ProyectoDiseñoApps.ViewModels
         {
             CurrentChildView = new AdministradorViewModel();
             Caption = "Administrador";
-            Icon = IconChar.Readme;
+            Icon = IconChar.Tools;
         }
 
 

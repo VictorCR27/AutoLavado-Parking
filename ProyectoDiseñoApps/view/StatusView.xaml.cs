@@ -27,7 +27,10 @@ namespace ProyectoDiseñoApps.view
         ConnectionDB con = new ConnectionDB();
 
         private ConnectionDB connectionDB;
-        
+        int costoParqueo;
+        private object id;
+
+        public object Id { get; private set; }
 
         public StatusView()
         {
@@ -80,16 +83,49 @@ namespace ProyectoDiseñoApps.view
                 try
                 {
                     connectionDB.connect.Open();
-                    SqlCommand command = new SqlCommand("Update Servicios SET estado = 0 WHERE id = @id", connectionDB.connect);
+                    SqlCommand command = new SqlCommand("UPDATE Servicios SET estado = 0, HoraSalida = @HoraSalida WHERE id = @id", connectionDB.connect);
                     command.Parameters.AddWithValue("@id", rowView["id"]);
+                    command.Parameters.AddWithValue("@HoraSalida", DateTime.Now);
 
                     // Corrige el valor del parámetro estado en el segundo comando SQL
                     SqlCommand command2 = new SqlCommand("UPDATE EspacioParqueo SET estado = 0 WHERE Descripcion = @ParqueoEspacio", connectionDB.connect);
                     command2.Parameters.AddWithValue("@ParqueoEspacio", rowView["ParqueoEspacio"]);
 
                     command.ExecuteNonQuery();
+
                     command2.ExecuteNonQuery(); // Ejecuta el segundo comando SQL
                     LoadData(); // Actualiza el DataGrid con los cambios más recientes
+
+                    using (SqlCommand command3 = new SqlCommand("SELECT Total FROM (SELECT *, DATEDIFF(MINUTE, HoraEntrada, HoraSalida) AS DiferenciaEnMinutos, DATEDIFF(MINUTE, HoraEntrada, HoraSalida) * 500 AS Total FROM Servicios) AS Subquery WHERE Id = @Id;", connectionDB.connect))
+                    {
+                        connectionDB.connect.Open();
+
+                        command3.Parameters.AddWithValue("@id", rowView["id"]); // Asegúrate de asignar un valor a la variable 'id'
+
+                        // Ejecutar la consulta y obtener el resultado
+                        using (SqlDataReader reader = command3.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                costoParqueo = reader.GetInt32(0); // Obtener el valor de la columna 'Total'
+                            }
+                            else
+                            {
+                                throw new Exception("No se encontró el registro con el Id especificado.");
+                            }
+                        }
+                    }
+
+                    using (SqlCommand command4 = new SqlCommand("UPDATE Servicios SET Costo = @costoParqueo WHERE id = @id", connectionDB.connect))
+                    {
+                        command4.Parameters.AddWithValue("@costoParqueo", costoParqueo);
+                        command4.Parameters.AddWithValue("@id", rowView["id"]);
+                        command4.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Total a pagar: ₡" + costoParqueo);
+
+
                 }
                 catch (Exception ex)
                 {
