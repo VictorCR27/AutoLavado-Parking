@@ -70,6 +70,8 @@
         </Button>
         
         <DataGrid Name="dataGrid" Grid.Row="14" SelectionMode="Single" AutoGenerateColumns="True" IsReadOnly="True"/>
+        <!--<DataGrid Name="serviciosDataGrid" Grid.Row="14" SelectionMode="Single" AutoGenerateColumns="True" IsReadOnly="True"/>-->
+        
 
     </Grid>
 </UserControl>

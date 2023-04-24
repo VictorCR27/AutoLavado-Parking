@@ -103,5 +103,10 @@ namespace ProyectoDiseñoApps.view
             }
         }
 
+        private void metricas_Click(object sender, RoutedEventArgs e)
+        {
+            metricasView metricas = new metricasView();
+            metricas.Show();
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace ProyectoDiseñoApps.view
                 con.connect.Open();
             }
 
-            String query = "SELECT * FROM Empleados where empleadoCorreo=@user and empleadoCedula=@password";
+            String query = "SELECT * FROM Empleados WHERE empleadoCorreo=@user AND empleadoNombre=@password";
 
             try
             {
@@ -54,21 +54,25 @@ namespace ProyectoDiseñoApps.view
                     cmd.Parameters.AddWithValue("@user", txtUser.Text.Trim());
                     cmd.Parameters.AddWithValue("@password", txtPass.Text.Trim());
 
-                    cmd.ExecuteNonQuery(); //ejecuta el query
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    if(count  > 0)
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        MainWindow main = new MainWindow();
-                        this.Close();
-                        main.Show();
-
-                    } else {
-                        MessageBox.Show("Username or password are not correct");
+                        if (reader.Read())
+                        {
+                            MainWindow main = new MainWindow();
+                            this.Close();
+                            main.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Username or password are not correct");
+                        }
                     }
                 }
             }
-            catch { throw; }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

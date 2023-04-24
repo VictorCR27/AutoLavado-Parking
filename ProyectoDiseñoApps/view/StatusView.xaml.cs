@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FontAwesome.Sharp;
+using System.ComponentModel.Design;
 
 
 namespace ProyectoDiseñoApps.view
@@ -29,8 +30,11 @@ namespace ProyectoDiseñoApps.view
         private ConnectionDB connectionDB;
         int costoParqueo;
         private object id;
+        private object idE;
+        private object empleadoId;
 
         public object Id { get; private set; }
+        public object idEm { get; private set; }
 
         public StatusView()
         {
@@ -80,12 +84,22 @@ namespace ProyectoDiseñoApps.view
             DataRowView rowView = (DataRowView)dataGrid.SelectedItem;
             if (rowView != null)
             {
+
+                // Obtener el empleadoId del registro seleccionado
+                empleadoId = rowView["EmpleadoAsignado"];
+
                 try
                 {
                     connectionDB.connect.Open();
-                    SqlCommand command = new SqlCommand("UPDATE Servicios SET estado = 0, HoraSalida = @HoraSalida WHERE id = @id", connectionDB.connect);
+                    SqlCommand command = new SqlCommand("UPDATE Servicios SET estado = 0, EmpleadoAsignado = 0, HoraSalida = @HoraSalida WHERE id = @id", connectionDB.connect);
                     command.Parameters.AddWithValue("@id", rowView["id"]);
                     command.Parameters.AddWithValue("@HoraSalida", DateTime.Now);
+
+                    // Actualizar el estado del empleado a ocupado (estado = 1).
+                    SqlCommand commandEstado = new SqlCommand("UPDATE Empleados SET Estado = 0 WHERE ID = @empleadoId", connectionDB.connect);
+                    commandEstado.Parameters.AddWithValue("@empleadoId", empleadoId);
+                    commandEstado.ExecuteNonQuery();
+
 
                     // Corrige el valor del parámetro estado en el segundo comando SQL
                     SqlCommand command2 = new SqlCommand("UPDATE EspacioParqueo SET estado = 0 WHERE Descripcion = @ParqueoEspacio", connectionDB.connect);
@@ -101,7 +115,7 @@ namespace ProyectoDiseñoApps.view
                                                                 "WHEN TipoServicio = 'Servicio de parqueo' " +
                                                                 "THEN DATEDIFF(MINUTE, HoraEntrada, HoraSalida) * 500 ELSE Costo END AS Total FROM (" +
                                                                  "SELECT *, DATEDIFF(MINUTE, HoraEntrada, HoraSalida) AS DiferenciaEnMinutos FROM Servicios) " +
-                                                                 "AS Subquery WHERE Id = @Id",connectionDB.connect))
+                                                                 "AS Subquery WHERE Id = @Id", connectionDB.connect))
                     {
                         connectionDB.connect.Open();
 
@@ -127,7 +141,7 @@ namespace ProyectoDiseñoApps.view
                         command4.Parameters.AddWithValue("@id", rowView["id"]);
                         command4.ExecuteNonQuery();
                     }
-
+                    
                     MessageBox.Show("Total a pagar: ₡" + costoParqueo);
 
 
@@ -186,10 +200,76 @@ namespace ProyectoDiseñoApps.view
         }
 
 
-
         private void AsignarBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView rowView = (DataRowView)dataGrid.SelectedItem;
+            if (rowView != null)
+            {
+                try
+                {
+                    if (connectionDB.connect.State != ConnectionState.Open)
+                    {
+                        connectionDB.connect.Open();
+                    }
+
+                    int empleadoId = -1;
+
+                    using (SqlCommand commandEm = new SqlCommand("SELECT TOP 1 ID FROM Empleados WHERE Estado = 0", connectionDB.connect))
+                    {
+                        SqlDataReader reader = commandEm.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            empleadoId = reader.GetInt32(0);
+                        }
+                        reader.Close();
+                    }
+
+                    if (empleadoId != -1)
+                    {
+                        // Obtener el ID del servicio del registro seleccionado en el dataGrid.
+                        int servicioId = Convert.ToInt32(rowView["id"]);
+
+
+                        // Asignar el empleado desocupado al servicio seleccionado.
+                        SqlCommand commandE = new SqlCommand("UPDATE Servicios SET EmpleadoAsignado = @empleadoId WHERE id = @servicioId", connectionDB.connect);
+                        commandE.Parameters.AddWithValue("@empleadoId", empleadoId);
+                        commandE.Parameters.AddWithValue("@servicioId", servicioId);
+                        commandE.ExecuteNonQuery();
+
+                        // Actualizar el estado del empleado a ocupado (estado = 1).
+                        SqlCommand commandEstado = new SqlCommand("UPDATE Empleados SET Estado = 1 WHERE ID = @empleadoId", connectionDB.connect);
+                        commandEstado.Parameters.AddWithValue("@empleadoId", empleadoId);
+                        commandEstado.ExecuteNonQuery();
+
+                        MessageBox.Show("Empleado con ID " + empleadoId + " ha sido asignado.");
+
+                        LoadData(); // Actualiza el DataGrid con los cambios más recientes
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay empleados disponibles.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al asignar empleado: " + ex.Message);
+                }
+                finally
+                {
+                    if (connectionDB.connect.State == ConnectionState.Open)
+                    {
+                        connectionDB.connect.Close();
+                    }
+                }
+            }
+        }
+
+
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
     }
+
 }

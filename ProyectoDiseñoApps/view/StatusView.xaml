@@ -8,7 +8,7 @@
         Title="StatusView" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
 
-    <DataGrid x:Name="dataGrid" Margin="10,10,10,68" AutoGenerateColumns="True">
+    <DataGrid x:Name="dataGrid" Margin="10,10,10,68" AutoGenerateColumns="True" SelectionChanged="dataGrid_SelectionChanged">
         <DataGrid.Columns>
             <DataGridTemplateColumn>
                 <DataGridTemplateColumn.CellTemplate>

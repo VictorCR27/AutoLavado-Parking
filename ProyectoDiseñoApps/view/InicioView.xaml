@@ -72,8 +72,7 @@
             <!-- Agrega más cuadros según la cantidad de espacios de parqueo -->
         </WrapPanel>
         
-        <TextBlock Text="Historial de Servicios" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,221,0,0" Grid.Row="2"/>
-        <TextBlock x:Name="ServicesCountTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" Height="25" FontSize="16" FontWeight="Bold" />
+        
 
     </Grid>
 
