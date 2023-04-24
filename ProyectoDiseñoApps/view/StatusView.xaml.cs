@@ -229,9 +229,15 @@ namespace ProyectoDiseñoApps.view
                         // Obtener el ID del servicio del registro seleccionado en el dataGrid.
                         int servicioId = Convert.ToInt32(rowView["id"]);
 
-
                         // Asignar el empleado desocupado al servicio seleccionado.
-                        SqlCommand commandE = new SqlCommand("UPDATE Servicios SET EmpleadoAsignado = @empleadoId WHERE id = @servicioId", connectionDB.connect);
+                        SqlCommand commandE = new SqlCommand("UPDATE Servicios " +
+                                                              "SET EmpleadoAsignado = @empleadoId, empleadoNombre = (" +
+                                                                  "SELECT empleadoNombre " +
+                                                                  "FROM Empleados " +
+                                                                  "WHERE ID = @empleadoId" +
+                                                              ") " +
+                                                              "WHERE id = @servicioId",
+                                                              connectionDB.connect);
                         commandE.Parameters.AddWithValue("@empleadoId", empleadoId);
                         commandE.Parameters.AddWithValue("@servicioId", servicioId);
                         commandE.ExecuteNonQuery();
@@ -263,6 +269,7 @@ namespace ProyectoDiseñoApps.view
                 }
             }
         }
+
 
 
 
