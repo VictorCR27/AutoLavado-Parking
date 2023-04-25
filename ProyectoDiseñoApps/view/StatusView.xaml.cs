@@ -202,6 +202,7 @@ namespace ProyectoDiseñoApps.view
 
         private void AsignarBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             DataRowView rowView = (DataRowView)dataGrid.SelectedItem;
             if (rowView != null)
             {
@@ -268,6 +269,7 @@ namespace ProyectoDiseñoApps.view
                     }
                 }
             }
+
         }
 
 

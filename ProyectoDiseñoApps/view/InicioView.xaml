@@ -9,17 +9,17 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <!-- Agrega más filas según la cantidad de espacios de parqueo -->
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Espacios de Parqueo" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,11,0,0"/>
+        <TextBlock Text="Espacios de Parqueo" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="67,11,0,0" Grid.RowSpan="2"/>
+        <TextBlock Text="Empleados" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="127,11,0,0" Grid.Column="1" Grid.RowSpan="2"/>
 
-        <WrapPanel Orientation="Horizontal" Width="275" VerticalAlignment="Top" Margin="5,53,-5,0" Grid.RowSpan="3">
+        <WrapPanel Orientation="Horizontal" Width="275" VerticalAlignment="Top" Margin="62,53,63,0" Grid.Row="1">
             <!-- Espacios de parqueo -->
             <Grid x:Name="space1" Width="50" Height="50" Margin="5">
                 <Border Background="Transparent"/>
@@ -69,10 +69,57 @@
                 <Border Background="Transparent"/>
                 <TextBlock Text="A12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
+            <Grid x:Name="space13" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="space14" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="space15" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="space16" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="space17" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A17" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="space18" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="space19" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="space20" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock Text="A20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
             <!-- Agrega más cuadros según la cantidad de espacios de parqueo -->
         </WrapPanel>
-        
-        
+
+        <WrapPanel x:Name="employeeWrapPanel" Orientation="Horizontal" Width="275" VerticalAlignment="Top" Margin="5,53,-5,0" Grid.Row="1" Grid.Column="1">
+            <Grid x:Name="employee1" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock x:Name="employee1Text" Text="E1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="employee2" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock x:Name="employee2Text" Text="E2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="employee3" Width="50" Height="50" Margin="5">
+                <Border Background="Transparent"/>
+                <TextBlock x:Name="employee3Text" Text="E3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </WrapPanel>
+
+
 
     </Grid>
 
